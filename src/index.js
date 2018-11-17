@@ -26,6 +26,7 @@ export default class PasswordMask extends Component {
     disabled: PropTypes.bool,
     inputStyles: PropTypes.any,
     buttonStyles: PropTypes.any,
+    holdToShow: PropTypes.bool,
     showButtonContent: PropTypes.oneOfType([
       PropTypes.element,
       PropTypes.string
@@ -41,6 +42,7 @@ export default class PasswordMask extends Component {
     buttonClassName: '',
     placeholder: '',
     useVendorStyles: true,
+    holdToShow: false,
     onChange() {},
     onBlur() {},
     onKeyDown() {}
@@ -95,7 +97,7 @@ export default class PasswordMask extends Component {
   }
 
   render() {
-    const { value, id, name, className, inputClassName, buttonClassName, placeholder, autoFocus, minLength, maxLength, onChange, onBlur, onKeyDown, showButtonContent, hideButtonContent, useVendorStyles, readOnly, disabled, required } = this.props;
+    const { holdToShow, value, id, name, className, inputClassName, buttonClassName, placeholder, autoFocus, minLength, maxLength, onChange, onBlur, onKeyDown, showButtonContent, hideButtonContent, useVendorStyles, readOnly, disabled, required } = this.props;
     const { passwordShown } = this.state;
 
     const vendorContainerCss = useVendorStyles ? containerStyles : {};
@@ -163,10 +165,23 @@ export default class PasswordMask extends Component {
             ...vendorButtonCss,
             ...this.props.buttonStyles
           }}
-          onMouseDown={e => e.preventDefault()}
+          onMouseDown={e => {
+            e.preventDefault();
+            if (holdToShow) {
+              this.togglePasswordMask();
+            }
+          }}
+          onMouseUp={e => {
+            e.preventDefault();
+            if (holdToShow) {
+              this.togglePasswordMask();
+            }
+          }}
           onClick={e => {
             e.preventDefault();
-            this.togglePasswordMask();
+            if (!holdToShow) {
+              this.togglePasswordMask();
+            }
           }}
           tabIndex={-1}
         >

@@ -15,7 +15,7 @@ export default class Example extends Component {
   render() {
     return (
       <div>
-        <h1>React Password Mask</h1>
+        <h1>React Password Mask (click)</h1>
 
         <PasswordMask
           value={this.state.password}
@@ -23,6 +23,25 @@ export default class Example extends Component {
           name="password"
           placeholder="Enter password"
           onChange={this.handleChange.bind(this)}
+          inputStyles={{
+            padding: '8px',
+            fontSize: '16px'
+          }}
+          inputClassName="PasswordMaskInput"
+          buttonStyles={{
+            width: '61px'
+          }}
+        />
+
+      <h1>React Password Mask (hold)</h1>
+
+        <PasswordMask
+          value={this.state.password}
+          id="password"
+          name="password"
+          placeholder="Enter password"
+          onChange={this.handleChange.bind(this)}
+          holdToShow={true}
           inputStyles={{
             padding: '8px',
             fontSize: '16px'

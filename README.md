@@ -68,6 +68,7 @@ Use `useVendorStyles={false}` to disable the default CSS styles from the package
 | `useVendorStyles`| boolean | Whether the vendor styles of this package should be applied at all. Default: `true`          |
 | `showButtonContent` | element, string | The HTML content of the show button. |
 | `hideButtonContent` | element, string | The HTML content of the hide button. |
+| `holdToShow` | boolean | Hold the button instead of click to display the password |
 
 ## Development
 
