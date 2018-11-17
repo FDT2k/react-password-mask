@@ -168,13 +168,19 @@ export default class PasswordMask extends Component {
           onMouseDown={e => {
             e.preventDefault();
             if (holdToShow) {
-              this.togglePasswordMask();
+              this.setState({ passwordShown: true });
             }
           }}
           onMouseUp={e => {
             e.preventDefault();
             if (holdToShow) {
-              this.togglePasswordMask();
+              this.setState({ passwordShown: false });
+            }
+          }}
+          onMouseOut={e => {
+            e.preventDefault();
+            if (holdToShow) {
+              this.setState({ passwordShown: false });
             }
           }}
           onClick={e => {
